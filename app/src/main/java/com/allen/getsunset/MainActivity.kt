@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //To Get some data from api
-    inner class MyAsyncTask:AsyncTask<String,String,String> {
+    inner class MyAsyncTask: AsyncTask<String, String, String>() {
         override fun onPreExecute() {
             //TODO: Before Starting the Task
             super.onPreExecute()
@@ -61,6 +61,12 @@ class MainActivity : AppCompatActivity() {
         override fun onProgressUpdate(vararg values: String?) {
             try {
                 var json = JSONObject(values[0])
+                var query = json.getJSONObject("query")
+                var results = query.getJSONObject("results")
+                var channel = results.getJSONObject("channel")
+                var astronomy = channel.getJSONObject("astronomy")
+                var sunRise = astronomy.getString("sunrise")
+                tvSunsetTime.text = "Sunrise time is" +sunRise
             }
             catch (ex:Exception) {
 
