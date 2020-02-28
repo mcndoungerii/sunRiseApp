@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         MyAsyncTask().execute(url)
     }
 
-    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     inner class MyAsyncTask: AsyncTask<String, String, String>() {
 
         override fun onPreExecute() {

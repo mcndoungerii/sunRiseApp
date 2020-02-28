@@ -19,11 +19,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@drawable/button_blue"
         android:id="@+id/buSunset"
         android:layout_width="226dp"
         android:layout_height="63dp"
         android:layout_marginTop="88dp"
-        android:hint="Enter a city name"
         android:onClick="getSunset"
         android:text="Get Sunset"
         app:layout_constraintBottom_toBottomOf="parent"
