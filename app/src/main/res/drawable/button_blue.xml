@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
+    <item android:state_pressed="true">
         <shape>
             //The background color
             <solid android:color="#70c656"></solid>
+            //The corner color
+            <stroke android:color="#53933f"
+                android:width="2dp"></stroke>
+            //The Corner Edge
+            <corners android:radius="8dp"></corners>
+            //Adding the padding
+            <padding android:top="8dp"
+                android:left="8dp"
+                android:right="8dp"
+                android:bottom="8dp"></padding>
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            //The Gradient color
+            <gradient android:startColor="#70c676"
+                android:endColor="#53933f"></gradient>
             //The corner color
             <stroke android:color="#53933f"
                 android:width="2dp"></stroke>

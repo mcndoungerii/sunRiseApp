@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 val astronomy=channel.getJSONObject("astronomy")
                 var sunrise=astronomy.getString("sunrise")
                 tvSunSetTime.text = " Sunrise time is "+ sunrise
+                println("Sunrise is $sunrise")
 
 
             }catch (ex:Exception){}
