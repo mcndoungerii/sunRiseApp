@@ -21,85 +21,82 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    protected fun GetSunset(view: View) {
-        var city = etCityName.text.toString();
-        val url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22"+ city +"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
+     fun getSunset(view: View) {
+
+        var city=etCityName.text.toString()
+        val url="https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22"+ city +"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
         MyAsyncTask().execute(url)
     }
 
-    //To Get some data from api
+    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     inner class MyAsyncTask: AsyncTask<String, String, String>() {
+
         override fun onPreExecute() {
-            //TODO: Before Starting the Task
-            super.onPreExecute()
+            //Before task started
         }
-        override fun doInBackground(vararg params: String?): String {
-            TODO("HTTP Call")
+        override fun doInBackground(vararg p0: String?): String {
             try {
-                //TODO: passing url from fun GetSunset to get executed in the background method
-                var url = URL(params[0])
 
-                //TODO: to open http connection
-                val urlConnect = url.openConnection() as HttpURLConnection
+                val url=URL(p0[0])
 
-                //TODO: define your timeout
-                urlConnect.connectTimeout = 7000
+                val urlConnect=url.openConnection() as HttpURLConnection
+                urlConnect.connectTimeout=7000
 
-                var inString = ConvertStreamToString(urlConnect.inputStream)
-
-                //cannot access the UI, hence pass the following method
+                var inString= ConvertStreamToString(urlConnect.inputStream)
+                //Cannot access to ui
                 publishProgress(inString)
+            }catch (ex:Exception){}
 
-            }
-            catch (ex:Exception){
 
-            }
+            return " "
 
-            return null!!
         }
 
         override fun onProgressUpdate(vararg values: String?) {
-            try {
-                var json = JSONObject(values[0])
-                var query = json.getJSONObject("query")
-                var results = query.getJSONObject("results")
-                var channel = results.getJSONObject("channel")
-                var astronomy = channel.getJSONObject("astronomy")
-                var sunRise = astronomy.getString("sunrise")
-                tvSunsetTime.text = "Sunrise time is" +sunRise
-            }
-            catch (ex:Exception) {
+            try{
+                var json=JSONObject(values[0])
+                val query=json.getJSONObject("query")
+                val results=query.getJSONObject("results")
+                val channel=results.getJSONObject("channel")
+                val astronomy=channel.getJSONObject("astronomy")
+                var sunrise=astronomy.getString("sunrise")
+                tvSunSetTime.text = " Sunrise time is "+ sunrise
 
-            }
+
+            }catch (ex:Exception){}
         }
 
         override fun onPostExecute(result: String?) {
-            //TODO: After Task Done.
+
+            //after task done
         }
+
 
     }
 
-    //Define Input Stream Fun Out of Scope
-    fun ConvertStreamToString(inputStream:InputStream):String {
-        var bufferReader = BufferedReader(InputStreamReader(inputStream))
 
+    fun ConvertStreamToString(inputStream:InputStream):String{
+
+        val bufferReader=BufferedReader(InputStreamReader(inputStream))
         var line:String
-        var AllString:String = ""
+        var AllString:String=""
 
         try {
-            do {
-                line = bufferReader.readLine()
-                if (line != null) {
-                    AllString += line
+            do{
+                line=bufferReader.readLine()
+                if(line!=null){
+                    AllString+=line
                 }
-            }
-            while (line != null)
+            }while (line!=null)
             inputStream.close()
-        }
-        catch (ex: Exception) {
+        }catch (ex:Exception){}
 
-        }
+
 
         return AllString
     }
+
+
+
+
 }

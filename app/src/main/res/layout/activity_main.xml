@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/etCityName"
-        android:layout_width="257dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="160dp"
-        android:hint="Enter your location"
-        android:text="EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:hint="Enter a city name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,22 +22,27 @@
         android:id="@+id/buSunset"
         android:layout_width="226dp"
         android:layout_height="63dp"
-        android:layout_marginTop="108dp"
-        android:onClick="GetSunset"
+        android:layout_marginTop="88dp"
+        android:hint="Enter a city name"
+        android:onClick="getSunset"
         android:text="Get Sunset"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSunsetTime" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSunSetTime"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/tvSunsetTime"
+        android:id="@+id/tvSunSetTime"
         android:layout_width="312dp"
         android:layout_height="51dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="88dp"
+        android:gravity="center"
         android:text="Sun set is 3:30pm"
         android:textSize="27sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCityName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
